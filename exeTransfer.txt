@@ -1,1 +1,7 @@
 https://we.tl/t-oy5u0ejTuc
+
+
+cmd:
+
+
+ExtractionScript_Pipe2.exe -c "Production BOM No." -t "CHAT-00054" -e "C:\Users\infodba\Desktop\DataExtractionUsingPython\Python_Code_to_Compare_BOM\TempData\ERP_Data_2024.xlsx" -b "C:\Users\infodba\Desktop\DataExtractionUsingPython\TempData\test_cad_data_10SEP2024.csv" -n "C:\Users\infodba\Desktop\DataExtractionUsingPython\TempData\testSEP2024.csv" -bo "C:\Users\infodba\Desktop\DataExtractionUsingPython\Python_Code_to_Compare_BOM\TempData\BOMMerge_df.csv" -tc "typeCount.csv"
