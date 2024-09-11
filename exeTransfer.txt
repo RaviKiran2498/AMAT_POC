@@ -5,3 +5,62 @@ cmd:
 
 
 ExtractionScript_Pipe2.exe -c "Production BOM No." -t "CHAT-00054" -e "C:\Users\infodba\Desktop\DataExtractionUsingPython\Python_Code_to_Compare_BOM\TempData\ERP_Data_2024.xlsx" -b "C:\Users\infodba\Desktop\DataExtractionUsingPython\TempData\test_cad_data_10SEP2024.csv" -n "C:\Users\infodba\Desktop\DataExtractionUsingPython\TempData\testSEP2024.csv" -bo "C:\Users\infodba\Desktop\DataExtractionUsingPython\Python_Code_to_Compare_BOM\TempData\BOMMerge_df.csv" -tc "typeCount.csv"
+
+--SQL Script
+SELECT
+        PITEM1.pitem_id AS "Item:item_id", PITEM1.puid AS "Item:puid", PITEMREVISION1.puid AS  "ItemRevision:puid", PWORKSPACEOBJECT1.pobject_name AS "Item:object_name", PWORKSPACEOBJECT1.pobject_type AS "Item:object_type", PPOM_USER1.puser_id AS "Item:owning_user", PPOM_GROUP1.pname AS "Item:owning_group", PPOM_IMC1.pname AS "Item:owning_site", PUSER_LAST_MOD1.puser_id AS "Item:last_mod_user", PPOM_APPLICATION_OBJECT1.plast_mod_date AS "Item:last_mod_date", PITEMREVISION1.pitem_revision_id AS  "ItemRevision:item_revision_id", PWORKSPACEOBJECT2.pobject_name AS "ItemRevision:object_name", PWORKSPACEOBJECT2.pobject_type AS "ItemRevision:object_type", PPOM_USER2.puser_id AS "ItemRevision:owning_user", PPOM_GROUP2.pname AS "ItemRevision:owning_group", PPOM_IMC2.pname AS "ItemRevision:owning_site", PUSER_LAST_MOD2.puser_id AS "ItemRevision:last_mod_user", PPOM_APPLICATION_OBJECT2.plast_mod_date AS "ItemRevision:last_mod_date", PWORKSPACEOBJECT1.pobject_application AS "Item:object_application", PWORKSPACEOBJECT2.pobject_application AS "ItemRevision:object_application", PWORKSPACEOBJECT1.pobject_desc AS "Item:object_desc", PWORKSPACEOBJECT2.pobject_desc AS "ItemRevision:object_desc", PGROUP1.porganization_name AS "Item:owning_organization", PTC_PROJECT1.pproject_name AS "Item:owning_project", PGROUP2.porganization_name AS "ItemRevision:owning_organization", PTC_PROJECT2.pproject_name AS "ItemRevision:owning_project", PRELEASESTATUS1.pname AS "Item:release_status_list", PRELEASESTATUS2.pname AS 
+"ItemRevision:release_status_list", PPOM_OBJECT1.ptimestamp AS "Item:timestamp", PPOM_OBJECT2.ptimestamp AS "ItemRevision:timestamp", PPOM_OBJECT2.ptimestamp AS "ItemRevision:timestamp"
+    FROM PITEM PITEM1
+ 
+        LEFT JOIN PITEMREVISION PITEMREVISION1 ON PITEMREVISION1.ritems_tagu = PITEM1.puid
+ 
+        LEFT JOIN PWORKSPACEOBJECT PWORKSPACEOBJECT1 ON PWORKSPACEOBJECT1.puid = PITEM1.puid
+ 
+        LEFT JOIN PPOM_APPLICATION_OBJECT PPOM_APPLICATION_OBJECT1 ON PPOM_APPLICATION_OBJECT1.puid = PITEM1.puid
+ 
+        LEFT JOIN PPOM_USER PPOM_USER1 ON PPOM_USER1.puid = PPOM_APPLICATION_OBJECT1.rowning_useru
+ 
+        LEFT JOIN PPOM_GROUP PPOM_GROUP1 ON PPOM_GROUP1.puid = PPOM_APPLICATION_OBJECT1.rowning_groupu
+ 
+        LEFT JOIN PPOM_OBJECT PPOM_OBJECT1 ON PPOM_OBJECT1.puid = PITEM1.puid
+ 
+        LEFT JOIN PPOM_IMC PPOM_IMC1 ON PPOM_IMC1.puid = PPOM_OBJECT1.rowning_siteu
+ 
+        LEFT JOIN PPOM_USER PUSER_LAST_MOD1 ON PUSER_LAST_MOD1.puid = PPOM_APPLICATION_OBJECT1.rlast_mod_useru
+ 
+        LEFT JOIN PWORKSPACEOBJECT PWORKSPACEOBJECT2 ON PWORKSPACEOBJECT2.puid = PITEMREVISION1.puid
+ 
+        LEFT JOIN PPOM_APPLICATION_OBJECT PPOM_APPLICATION_OBJECT2 ON PPOM_APPLICATION_OBJECT2.puid = PITEMREVISION1.puid
+ 
+        LEFT JOIN PPOM_USER PPOM_USER2 ON PPOM_USER2.puid = PPOM_APPLICATION_OBJECT2.rowning_useru
+ 
+        LEFT JOIN PPOM_GROUP PPOM_GROUP2 ON PPOM_GROUP2.puid = PPOM_APPLICATION_OBJECT2.rowning_groupu
+ 
+        LEFT JOIN PPOM_OBJECT PPOM_OBJECT2 ON PPOM_OBJECT2.puid = PITEMREVISION1.puid
+ 
+        LEFT JOIN PPOM_IMC PPOM_IMC2 ON PPOM_IMC2.puid = PPOM_OBJECT2.rowning_siteu
+ 
+        LEFT JOIN PPOM_USER PUSER_LAST_MOD2 ON PUSER_LAST_MOD2.puid = PPOM_APPLICATION_OBJECT2.rlast_mod_useru
+ 
+        LEFT JOIN PGROUP PGROUP1 ON PGROUP1.puid = PWORKSPACEOBJECT1.rowning_organizationu
+ 
+        LEFT JOIN PTC_PROJECT PTC_PROJECT1 ON PTC_PROJECT1.puid = PWORKSPACEOBJECT1.rowning_projectu
+ 
+        LEFT JOIN PGROUP PGROUP2 ON PGROUP2.puid = PWORKSPACEOBJECT2.rowning_organizationu
+ 
+        LEFT JOIN PTC_PROJECT PTC_PROJECT2 ON PTC_PROJECT2.puid = PWORKSPACEOBJECT2.rowning_projectu
+ 
+        LEFT JOIN PRELEASE_STATUS_LIST PRELEASE_STATUS_LIST1 ON PRELEASE_STATUS_LIST1.puid = PITEM1.puid
+ 
+        LEFT JOIN PRELEASESTATUS PRELEASESTATUS1 ON PRELEASESTATUS1.puid = PRELEASE_STATUS_LIST1.pvalu_0
+ 
+        LEFT JOIN PRELEASE_STATUS_LIST PRELEASE_STATUS_LIST2 ON PRELEASE_STATUS_LIST2.puid = PITEMREVISION1.puid
+ 
+        LEFT JOIN PRELEASESTATUS PRELEASESTATUS2 ON PRELEASESTATUS2.puid = PRELEASE_STATUS_LIST2.pvalu_0
+ 
+        LEFT JOIN PIMANRELATION PIMANRELATION1 ON PIMANRELATION1.rprimary_objectu = PITEM1.puid
+ 
+        LEFT JOIN PFORM PFORM1 ON PFORM1.puid = PIMANRELATION1.rsecondary_objectu
+ 
+        LEFT JOIN PAMT_ITEMMASTER ON PAMT_ITEMMASTER.puid = PFORM.rdata_fileu
+    ORDER BY PITEM1.puid
