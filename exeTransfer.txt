@@ -9,7 +9,7 @@ ExtractionScript_Pipe2.exe -c "Production BOM No." -t "CHAT-00054" -e "C:\Users\
 --SQL Script
 SELECT
         PITEM1.pitem_id AS "Item:item_id", PITEM1.puid AS "Item:puid", PITEMREVISION1.puid AS  "ItemRevision:puid", PWORKSPACEOBJECT1.pobject_name AS "Item:object_name", PWORKSPACEOBJECT1.pobject_type AS "Item:object_type", PPOM_USER1.puser_id AS "Item:owning_user", PPOM_GROUP1.pname AS "Item:owning_group", PPOM_IMC1.pname AS "Item:owning_site", PUSER_LAST_MOD1.puser_id AS "Item:last_mod_user", PPOM_APPLICATION_OBJECT1.plast_mod_date AS "Item:last_mod_date", PITEMREVISION1.pitem_revision_id AS  "ItemRevision:item_revision_id", PWORKSPACEOBJECT2.pobject_name AS "ItemRevision:object_name", PWORKSPACEOBJECT2.pobject_type AS "ItemRevision:object_type", PPOM_USER2.puser_id AS "ItemRevision:owning_user", PPOM_GROUP2.pname AS "ItemRevision:owning_group", PPOM_IMC2.pname AS "ItemRevision:owning_site", PUSER_LAST_MOD2.puser_id AS "ItemRevision:last_mod_user", PPOM_APPLICATION_OBJECT2.plast_mod_date AS "ItemRevision:last_mod_date", PWORKSPACEOBJECT1.pobject_application AS "Item:object_application", PWORKSPACEOBJECT2.pobject_application AS "ItemRevision:object_application", PWORKSPACEOBJECT1.pobject_desc AS "Item:object_desc", PWORKSPACEOBJECT2.pobject_desc AS "ItemRevision:object_desc", PGROUP1.porganization_name AS "Item:owning_organization", PTC_PROJECT1.pproject_name AS "Item:owning_project", PGROUP2.porganization_name AS "ItemRevision:owning_organization", PTC_PROJECT2.pproject_name AS "ItemRevision:owning_project", PRELEASESTATUS1.pname AS "Item:release_status_list", PRELEASESTATUS2.pname AS 
-"ItemRevision:release_status_list", PPOM_OBJECT1.ptimestamp AS "Item:timestamp", PPOM_OBJECT2.ptimestamp AS "ItemRevision:timestamp", PPOM_OBJECT2.ptimestamp AS "ItemRevision:timestamp"
+"ItemRevision:release_status_list", PPOM_OBJECT1.ptimestamp AS "Item:timestamp", PPOM_OBJECT2.ptimestamp AS "ItemRevision:timestamp", PAMT_ITEMMASTER.pamt_PNoAttr AS "amt_MechDgnIM:amt_PNoAttr"
     FROM PITEM PITEM1
  
         LEFT JOIN PITEMREVISION PITEMREVISION1 ON PITEMREVISION1.ritems_tagu = PITEM1.puid
@@ -62,5 +62,5 @@ SELECT
  
         LEFT JOIN PFORM PFORM1 ON PFORM1.puid = PIMANRELATION1.rsecondary_objectu
  
-        LEFT JOIN PAMT_ITEMMASTER ON PAMT_ITEMMASTER.puid = PFORM.rdata_fileu
+        LEFT JOIN PAMT_ITEMMASTER ON PAMT_ITEMMASTER.puid = PFORM1.rdata_fileu
     ORDER BY PITEM1.puid
