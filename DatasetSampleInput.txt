@@ -1,0 +1,3 @@
+Dataset:object_name,Dataset:dataset_type,ImanFile:original_file_name,ImanRelation:relation_type,Item:item_id,ItemRevision:item_revision_id,Item:object_type,Dataset:owning_user,Dataset:owning_group
+"001001-A","UGMASTER","C:\Users\infodba\Desktop\A_MAT\NX_Files\Comp1.prt","IMAN_specification","001001","A","Item","infodba","dba"
+"001001-A-dwg1","UGPART","C:\Users\infodba\Desktop\A_MAT\NX_Files\Comp1_dwg1.prt","IMAN_specification","001001","A","Item","infodba","dba"
