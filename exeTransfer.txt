@@ -67,3 +67,25 @@ SELECT
  
         LEFT JOIN PAMT_ITEMMASTER ON PAMT_ITEMMASTER.puid = PFORM1.rdata_fileu
     ORDER BY PITEM1.puid
+
+
+*********************TC-NX bat File*****************************************
+set JRE64_HOME=C:\Program Files\JAVA\jdk-11.0.14
+set FMS_HOME=C:\Apps\TC141\TC_Root\tccs
+rem setx FMS_HOME C:\Apps\Teamcenter14\TC_ROOT\tccs
+set UGII_UGMGR_COMMUNICATION=http
+set UGII_BASE_DIR=C:\Program Files\Siemens\NX2206
+set UGII_ROOT_DIR=C:\Program Files\Siemens\NX2206
+set SPLM_LICENSE_SERVER=28000@WIN-L55222J26EN
+set UGS_LICENSE_BUNDLE=NX12490;NX91110;NX93100;NX92100;NX93200
+set UGII_UGMGR_HTTP_URL=http://localhost:8080/tc
+
+
+cd %FMS_HOME%\bin
+REM fccstat.exe -kill
+REM fccstat.exe -start
+fccstat.exe -status
+
+
+@echo OFF
+call "%UGII_BASE_DIR%\UGII\ugraf.exe" -pim=yes -u=infodba -p=infodba
