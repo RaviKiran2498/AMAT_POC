@@ -89,3 +89,11 @@ fccstat.exe -status
 
 @echo OFF
 call "%UGII_BASE_DIR%\UGII\ugraf.exe" -pim=yes -u=infodba -p=infodba
+
+
+
+Select  PFI.FileName, 'To', CFI.FileName
+from FileAssociation FA 
+join FileIteration PFI on FA.FromId = PFI.FileIterationId
+join FileIteration CFI on FA.ToId = CFI.FileIterationId
+order by 1
